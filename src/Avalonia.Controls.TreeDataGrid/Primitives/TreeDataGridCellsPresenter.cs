@@ -49,8 +49,8 @@ namespace Avalonia.Controls.Primitives
 
         public void UpdateRowIndex(int index)
         {
-            if (index < 0 || Rows is null || index >= Rows.Count)
-                throw new ArgumentOutOfRangeException(nameof(index));
+            //if (index < 0 || Rows is null || index >= Rows.Count)
+            //    throw new ArgumentOutOfRangeException(nameof(index));
             if (RowIndex == -1)
                 throw new InvalidOperationException("Row is not realized.");
 
