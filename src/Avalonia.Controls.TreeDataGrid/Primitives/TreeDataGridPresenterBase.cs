@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using Avalonia.Controls.Models.TreeDataGrid;
 using Avalonia.Controls.Presenters;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
@@ -15,7 +16,7 @@ using CollectionExtensions = Avalonia.Controls.Models.TreeDataGrid.CollectionExt
 
 namespace Avalonia.Controls.Primitives
 {
-    public abstract class TreeDataGridPresenterBase<TItem> : Border
+    public abstract class TreeDataGridPresenterBase<TItem> : Border where TItem : ITreeDataGridPresentable
     {
 #pragma warning disable AVP1002
         public static readonly DirectProperty<TreeDataGridPresenterBase<TItem>, TreeDataGridElementFactory?>
@@ -48,6 +49,7 @@ namespace Avalonia.Controls.Primitives
         private double _lastEstimatedElementSizeU = 25;
         private Control? _focusedElement;
         private int _focusedIndex = -1;
+        internal TreeDataGrid? TreeDataGrid { get; set; }
 
         public TreeDataGridPresenterBase()
         {
@@ -402,7 +404,7 @@ namespace Avalonia.Controls.Primitives
         {
             Debug.Assert(_realizedElements is not null);
 
-            return _realizedElements.GetOrEstimateAnchorElementForViewport(
+            return _realizedElements.GetAnchorElementForViewport(
                 viewportStart,
                 viewportEnd,
                 itemCount,
@@ -579,11 +581,20 @@ namespace Avalonia.Controls.Primitives
 
             // Get or estimate the anchor element from which to start realization.
             var itemCount = items.Count;
-            var (anchorIndex, anchorU) = GetOrEstimateAnchorElementForViewport(viewportStart, viewportEnd, itemCount);
+            var(anchorIndex, anchorU) = _realizedElements.GetAnchorElementForViewport(
+                viewportStart,
+                viewportEnd,
+                itemCount,
+                ref _lastEstimatedElementSizeU);
+
+            if (anchorIndex == -1 && anchorU == -1)
+            {
+                (anchorIndex, anchorU) = GetAnchorElementForDisjunctScroll(viewportStart, viewportEnd, itemCount);
+            }
 
             // Check if the anchor element is not within the currently realized elements.
             var disjunct = anchorIndex < _realizedElements.FirstIndex ||
-                anchorIndex > _realizedElements.LastIndex;
+            anchorIndex > _realizedElements.LastIndex;
 
             return new MeasureViewport
             {
@@ -594,7 +605,7 @@ namespace Avalonia.Controls.Primitives
                 viewportIsDisjunct = disjunct,
             };
         }
-
+        protected abstract (int anchorIndex, double anchorU) GetAnchorElementForDisjunctScroll(double viewportStart, double viewportEnd, int itemCount);
         private Control GetOrCreateElement(IReadOnlyList<TItem> items, int index)
         {
             var e = GetRealizedElement(index) ??

@@ -160,5 +160,6 @@ namespace Avalonia.Controls.Models.TreeDataGrid
             if (width.IsAbsolute)
                 ActualWidth = width.Value;
         }
+        public double GetSizeU() => ActualWidth;
     }
 }

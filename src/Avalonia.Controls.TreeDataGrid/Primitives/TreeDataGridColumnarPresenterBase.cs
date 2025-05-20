@@ -13,7 +13,7 @@ namespace Avalonia.Controls.Primitives
     /// Implements common layout functionality between <see cref="TreeDataGridCellsPresenter"/>
     /// and <see cref="TreeDataGridColumnHeadersPresenter"/>.
     /// </remarks>
-    public abstract class TreeDataGridColumnarPresenterBase<TItem> : TreeDataGridPresenterBase<TItem> 
+    public abstract class TreeDataGridColumnarPresenterBase<TItem> : TreeDataGridPresenterBase<TItem> where TItem : ITreeDataGridPresentable
     {
         protected IColumns? Columns => Items as IColumns;
 
@@ -69,6 +69,27 @@ namespace Avalonia.Controls.Primitives
         protected sealed override double CalculateSizeU(Size availableSize)
         {
             return Columns?.GetEstimatedWidth(availableSize.Width) ?? 0;
+        }
+
+        protected override (int anchorIndex, double anchorU) GetAnchorElementForDisjunctScroll(double viewportStart, double viewportEnd, int itemCount)
+        {
+            double position = 0;
+            double totalSize = 0;
+            int anchorIndex = 0;
+            double anchorU = 0;
+            for (var thisIndex = 0; thisIndex<itemCount; thisIndex++)
+            {
+                totalSize += Items![thisIndex].GetSizeU();
+                anchorIndex = thisIndex;
+                anchorU = position;
+                if (totalSize >= viewportStart)
+                {
+                    break;
+                }
+                position = totalSize;
+            }
+
+            return (anchorIndex, anchorU);
         }
     }
 }

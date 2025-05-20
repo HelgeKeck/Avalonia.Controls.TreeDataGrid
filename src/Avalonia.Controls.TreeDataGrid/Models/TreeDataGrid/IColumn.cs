@@ -5,7 +5,7 @@ namespace Avalonia.Controls.Models.TreeDataGrid
     /// <summary>
     /// Represents a column in an <see cref="ITreeDataGridSource"/>.
     /// </summary>
-    public interface IColumn : INotifyPropertyChanged
+    public interface IColumn : INotifyPropertyChanged, ITreeDataGridPresentable
     {
         /// <summary>
         /// Gets the actual width of the column after measurement.

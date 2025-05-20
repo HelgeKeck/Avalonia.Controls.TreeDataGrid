@@ -148,5 +148,18 @@ namespace Avalonia.Controls.Primitives
             count = 0;
             return false;
         }
+        protected override (int anchorIndex, double anchorU) GetAnchorElementForDisjunctScroll(double viewportStart, double viewportEnd, int itemCount)
+        {
+            if (TreeDataGrid is not null && TreeDataGrid.Scroll is not null)
+            {
+                double verticalPos = TreeDataGrid.Scroll.Offset.Y / TreeDataGrid.Scroll.Extent.Height;
+                int index = Convert.ToInt32(Math.Truncate(verticalPos * itemCount));
+                double anchor = viewportStart;
+                return (index, anchor);
+            }
+
+            return (-1, -1);
+        }
+
     }
 }

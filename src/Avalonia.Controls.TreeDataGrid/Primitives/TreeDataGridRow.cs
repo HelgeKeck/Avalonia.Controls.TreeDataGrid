@@ -138,6 +138,11 @@ namespace Avalonia.Controls.Primitives
             base.OnApplyTemplate(e);
             CellsPresenter = e.NameScope.Find<TreeDataGridCellsPresenter>("PART_CellsPresenter");
 
+            if (CellsPresenter is not null)
+            {
+                CellsPresenter.TreeDataGrid = this._treeDataGrid;
+            }
+
             if (RowIndex >= 0)
                 CellsPresenter?.Realize(RowIndex);
         }

@@ -117,7 +117,7 @@ namespace Avalonia.Controls.Primitives
         /// element realization can start. Failing that it estimates the first element in the
         /// viewport.
         /// </remarks>
-        public (int index, double position) GetOrEstimateAnchorElementForViewport(
+        public (int index, double position) GetAnchorElementForViewport(
             double viewportStartU,
             double viewportEndU,
             int itemCount,
@@ -151,22 +151,7 @@ namespace Avalonia.Controls.Primitives
                 }
             }
 
-            // We don't have any realized elements in the requested viewport, or can't rely on
-            // StartU being valid. Estimate the index using only the estimated size. First,
-            // estimate the element size, using defaultElementSizeU if we don't have any realized
-            // elements.
-            var estimatedSize = EstimateElementSizeU() switch
-            {
-                -1 => estimatedElementSizeU,
-                double v => v,
-            };
-
-            // Store the estimated size for the next layout pass.
-            estimatedElementSizeU = estimatedSize;
-
-            // Estimate the element at the start of the viewport.
-            var index = Math.Min((int)(viewportStartU / estimatedSize), itemCount - 1);
-            return (index, index * estimatedSize);
+            return (-1, -1);
         }
 
         /// <summary>

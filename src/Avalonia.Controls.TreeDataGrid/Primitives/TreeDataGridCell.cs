@@ -5,6 +5,7 @@ using Avalonia.Controls.Models.TreeDataGrid;
 using Avalonia.Controls.Selection;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
 
@@ -58,6 +59,12 @@ namespace Avalonia.Controls.Primitives
                 throw new IndexOutOfRangeException("Invalid column index.");
             if (rowIndex < 0)
                 throw new IndexOutOfRangeException("Invalid row index.");
+
+            foreach (var child in VisualChildren)
+            {
+                if (child is Layoutable layoutable)
+                    layoutable.InvalidateMeasure();
+            }
 
             ColumnIndex = columnIndex;
             RowIndex = rowIndex;

@@ -179,5 +179,11 @@ namespace Avalonia.Controls.Models.TreeDataGrid
         }
 
         private static double NonNaN(double v) => double.IsNaN(v) ? 0 : v;
+        public double GetSizeU() => ActualWidth;
+    }
+
+    public interface ITreeDataGridPresentable
+    {
+        double GetSizeU();
     }
 }

@@ -215,5 +215,6 @@ namespace Avalonia.Controls.Models.TreeDataGrid
                     _owner._controller.OnChildCollectionChanged(_owner, e);
             }
         }
+        public double GetSizeU() => Height.Value;
     }
 }

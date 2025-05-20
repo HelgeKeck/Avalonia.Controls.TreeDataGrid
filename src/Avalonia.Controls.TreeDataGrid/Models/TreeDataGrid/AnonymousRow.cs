@@ -39,5 +39,7 @@ namespace Avalonia.Controls.Models.TreeDataGrid
         {
             throw new NotSupportedException();
         }
+
+        public double GetSizeU() => Height.Value;
     }
 }

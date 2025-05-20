@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a row in an <see cref="ITreeDataGridSource"/>.
     /// </summary>
-    public interface IRow
+    public interface IRow : ITreeDataGridPresentable
     {
         /// <summary>
         /// Gets the row header.
