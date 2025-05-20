@@ -275,35 +275,36 @@ namespace Avalonia.Controls.Primitives
             var first = FirstIndex;
             var realizedIndex = index - first;
 
-            if (realizedIndex < Count)
-            {
-                // The insertion point affects the realized elements. Update the index of the
-                // elements after the insertion point.
-                var elementCount = _elements.Count;
-                var start = Math.Max(realizedIndex, 0);
+            // TODO Winfi
+            //if (realizedIndex < Count)
+            //{
+            //    // The insertion point affects the realized elements. Update the index of the
+            //    // elements after the insertion point.
+            //    var elementCount = _elements.Count;
+            //    var start = Math.Max(realizedIndex, 0);
 
-                for (var i = start; i < elementCount; ++i)
-                {
-                    if (_elements[i] is not Control element)
-                        continue;
-                    var oldIndex = i + first;
-                    updateElementIndex(element, oldIndex, oldIndex + count);
-                }
+            //    for (var i = start; i < elementCount; ++i)
+            //    {
+            //        if (_elements[i] is not Control element)
+            //            continue;
+            //        var oldIndex = i + first;
+            //        updateElementIndex(element, oldIndex, oldIndex + count);
+            //    }
 
-                if (realizedIndex < 0)
-                {
-                    // The insertion point was before the first element, update the first index.
-                    _firstIndex += count;
-                    _startUUnstable = true;
-                }
-                else
-                {
-                    // The insertion point was within the realized elements, insert an empty space
-                    // in _elements and _sizes.
-                    _elements!.InsertMany(realizedIndex, null, count);
-                    _sizes!.InsertMany(realizedIndex, double.NaN, count);
-                }
-            }
+            //    if (realizedIndex < 0)
+            //    {
+            //        // The insertion point was before the first element, update the first index.
+            //        _firstIndex += count;
+            //        _startUUnstable = true;
+            //    }
+            //    else
+            //    {
+            //        // The insertion point was within the realized elements, insert an empty space
+            //        // in _elements and _sizes.
+            //        _elements!.InsertMany(realizedIndex, null, count);
+            //        _sizes!.InsertMany(realizedIndex, double.NaN, count);
+            //    }
+            //}
         }
 
         /// <summary>
