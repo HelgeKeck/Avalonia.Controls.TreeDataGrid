@@ -777,6 +777,12 @@ namespace Avalonia.Controls
             RowsPresenter?.InvalidateMeasure();
         }
 
+        public void Recylce()
+        {
+            RowsPresenter?.RecycleAllElements();
+            RowsPresenter?.InvalidateMeasure();
+        }
+
         private static TreeDataGridRowDropPosition GetDropPosition(
             ITreeDataGridSource source,
             DragEventArgs e,

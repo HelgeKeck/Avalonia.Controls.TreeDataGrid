@@ -49,10 +49,7 @@ namespace Avalonia.Controls.Primitives
 
         public void UpdateRowIndex(int index)
         {
-<<<<<<< Updated upstream
             // TODO Winfi
-=======
->>>>>>> Stashed changes
             //if (index < 0 || Rows is null || index >= Rows.Count)
             //    throw new ArgumentOutOfRangeException(nameof(index));
             if (RowIndex == -1)
