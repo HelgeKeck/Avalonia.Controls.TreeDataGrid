@@ -398,6 +398,11 @@ namespace Avalonia.Controls.Selection
                 rangeModifier: e.KeyModifiers.HasFlag(KeyModifiers.Shift),
                 toggleModifier: toggleModifier,
                 rightButton: isRightButton);
+
+            var _row = _source.Rows[row.RowIndex];
+            if (_row is IExpander expander)
+                expander.IsExpanded = !expander.IsExpanded;
+
             e.Handled = true;
         }
 
