@@ -6,24 +6,26 @@
     <ResourceDictionary>
       <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-          <SolidColorBrush x:Key="TreeDataGridGridLinesBrush" Color="Black" Opacity="0.1" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPointerOverBrush" Color="Black" Opacity="0.1" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPressedBrush" Color="Black" Opacity="0.6" />
+          <SolidColorBrush x:Key="TreeDataGridGridLinesBrush" Color="Transparent" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundBrush" Color="#18CCCCCC"/>
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPointerOverBrush" Color="#40AAAAAA" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPressedBrush" Color="{StaticResource SystemBaseMediumLowColor}" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBorderBrushPointerOverBrush" Color="Transparent" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBorderBrushPressedBrush" Color="Transparent" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPointerOverBrush" Color="Black" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPressedBrush" Color="Black" />
-          <SolidColorBrush x:Key="TreeDataGridSelectedCellBackgroundBrush" Color="Black" Opacity="0.4" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPointerOverBrush" Color="{StaticResource SystemBaseHighColor}" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPressedBrush" Color="{StaticResource SystemBaseHighColor}" />
+          <SolidColorBrush x:Key="TreeDataGridSelectedCellBackgroundBrush" Color="#40AAAAAA" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
-          <SolidColorBrush x:Key="TreeDataGridGridLinesBrush" Color="White" Opacity="0.1" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPointerOverBrush" Color="White" Opacity="0.1" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPressedBrush" Color="White" Opacity="0.6" />
+          <SolidColorBrush x:Key="TreeDataGridGridLinesBrush" Color="Transparent" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundBrush" Color="#18CCCCCC"/>
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPointerOverBrush" Color="#40AAAAAA" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPressedBrush" Color="{StaticResource SystemBaseMediumLowColor}" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBorderBrushPointerOverBrush" Color="Transparent" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBorderBrushPressedBrush" Color="Transparent" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPointerOverBrush" Color="White" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPressedBrush" Color="White" />
-          <SolidColorBrush x:Key="TreeDataGridSelectedCellBackgroundBrush" Color="White" Opacity="0.4" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPointerOverBrush" Color="{StaticResource SystemBaseHighColor}" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPressedBrush" Color="{StaticResource SystemBaseHighColor}" />
+          <SolidColorBrush x:Key="TreeDataGridSelectedCellBackgroundBrush" Color="#40AAAAAA" />
         </ResourceDictionary>
       </ResourceDictionary.ThemeDictionaries>
 
@@ -74,7 +76,7 @@
       </ControlTheme>
 
       <ControlTheme x:Key="{x:Type TreeDataGridColumnHeader}" TargetType="TreeDataGridColumnHeader">
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Background" Value="{DynamicResource TreeDataGridHeaderBackgroundBrush}" />
         <Setter Property="MinHeight" Value="25" />
         <Setter Property="Padding" Value="4 2" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -84,7 +86,8 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="{TemplateBinding CornerRadius}">
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Margin="0,0,2,0">
               <DockPanel VerticalAlignment="Stretch">
                 <Panel DockPanel.Dock="Right"
                        TabIndex="2">
@@ -122,7 +125,7 @@
                                   TabIndex="0">
                   <ContentPresenter.DataTemplates>
                     <DataTemplate DataType="x:String">
-                      <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis" />
+                      <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center"/>
                     </DataTemplate>
                   </ContentPresenter.DataTemplates>
                 </ContentPresenter>
@@ -239,7 +242,7 @@
                                 IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}"
                                 IsVisible="{TemplateBinding ShowExpander}" />
                 </Border>
-                <Decorator Name="PART_Content" />
+                <Decorator Name="PART_Content"/>
               </DockPanel>
             </Border>
           </ControlTemplate>
@@ -306,7 +309,8 @@
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               CornerRadius="{TemplateBinding CornerRadius}"
                               Content="{TemplateBinding Content}"
-                              Padding="{TemplateBinding Padding}" />
+                              Padding="{TemplateBinding Padding}"
+                              HorizontalContentAlignment="Stretch"/>
           </ControlTemplate>
         </Setter>
 
@@ -337,4 +341,5 @@
   <Style Selector=":is(TreeDataGridCell):selected">
     <Setter Property="Background" Value="{DynamicResource TreeDataGridSelectedCellBackgroundBrush}" />
   </Style>
+
 </Styles>

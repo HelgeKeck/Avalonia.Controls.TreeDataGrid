@@ -7,24 +7,26 @@
     <ResourceDictionary>
       <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-          <SolidColorBrush x:Key="TreeDataGridGridLinesBrush" Color="{StaticResource SystemListLowColor}" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPointerOverBrush" Color="{StaticResource SystemBaseHighColor}" Opacity="0.1" />
+          <SolidColorBrush x:Key="TreeDataGridGridLinesBrush" Color="Transparent" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundBrush" Color="#18CCCCCC"/>
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPointerOverBrush" Color="#40AAAAAA" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPressedBrush" Color="{StaticResource SystemBaseMediumLowColor}" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBorderBrushPointerOverBrush" Color="Transparent" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBorderBrushPressedBrush" Color="Transparent" />
           <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPointerOverBrush" Color="{StaticResource SystemBaseHighColor}" />
           <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPressedBrush" Color="{StaticResource SystemBaseHighColor}" />
-          <SolidColorBrush x:Key="TreeDataGridSelectedCellBackgroundBrush" Color="{StaticResource SystemAccentColor}" Opacity="0.4" />
+          <SolidColorBrush x:Key="TreeDataGridSelectedCellBackgroundBrush" Color="#40AAAAAA" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
-          <SolidColorBrush x:Key="TreeDataGridGridLinesBrush" Color="{StaticResource SystemListLowColor}" />
-          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPointerOverBrush" Color="{StaticResource SystemBaseHighColor}" Opacity="0.1" />
+          <SolidColorBrush x:Key="TreeDataGridGridLinesBrush" Color="Transparent" />
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundBrush" Color="#18CCCCCC"/>
+          <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPointerOverBrush" Color="#40AAAAAA" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBackgroundPressedBrush" Color="{StaticResource SystemBaseMediumLowColor}" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBorderBrushPointerOverBrush" Color="Transparent" />
           <SolidColorBrush x:Key="TreeDataGridHeaderBorderBrushPressedBrush" Color="Transparent" />
           <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPointerOverBrush" Color="{StaticResource SystemBaseHighColor}" />
           <SolidColorBrush x:Key="TreeDataGridHeaderForegroundPressedBrush" Color="{StaticResource SystemBaseHighColor}" />
-          <SolidColorBrush x:Key="TreeDataGridSelectedCellBackgroundBrush" Color="{StaticResource SystemAccentColor}" Opacity="0.4" />
+          <SolidColorBrush x:Key="TreeDataGridSelectedCellBackgroundBrush" Color="#40AAAAAA" />
         </ResourceDictionary>
       </ResourceDictionary.ThemeDictionaries>
     </ResourceDictionary>

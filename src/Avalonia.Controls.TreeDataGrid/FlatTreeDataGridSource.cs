@@ -164,6 +164,7 @@ namespace Avalonia.Controls
             Sorted?.Invoke();
             foreach (var c in Columns)
                 c.SortDirection = null;
+            _comparer = null;
         }
 
         IEnumerable<object> ITreeDataGridSource.GetModelChildren(object model)
